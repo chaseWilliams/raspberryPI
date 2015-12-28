@@ -3,8 +3,8 @@
 #spawn "echo #{payload}" => stuff
 
 require 'rest-client'
-address = `ifconfig | grep "192.168.100" | awk {'print $2'}`.chop
-name = `hostname`.chop
+address = Socket.getaddrinfo(Socket.gethostname, nil)[0][2]
+name = Socket.gethostname
 if name.include? '.' then name = name.slice(0..name.index('.') - 1) end
 #WARNING 'grep' line needs to be changed to '10.10.10' for WGSOHO
 payload = {:"text" => "The device #{name}'s IP Address is #{address}"}.to_json
