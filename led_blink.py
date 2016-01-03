@@ -4,18 +4,18 @@ import time, random
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-blue_led = #figure out
-red_led =
-green_led =
-button =
+blue_led = 12
+red_led = 17
+green_led = 13
+button = 18
 
 GPIO.setup(blue_led, GPIO.OUT)
-GPIO.setup(red_led), GPIO.OUT)
+GPIO.setup(red_led, GPIO.OUT)
 GPIO.setup(green_led, GPIO.OUT)
 GPIO.setup(button, GPIO.IN, GPIO.PUD_UP)
 
 while True:
-    if GPIO.input(button) == False:
+    if !(GPIO.input(button)):
         x = 2
         print("Enjoy!")
         while x > 0:
