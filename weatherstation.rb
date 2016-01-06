@@ -3,8 +3,6 @@ require 'rest-client'
 class WeatherMan
   def getWeather(cityID)
     response = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774"
-puts response
-puts "#{response[:main]}"
     @current = {
       temp: (1.8 * (response['main']['temp'].to_f - 273) + 32).round(2),
       cloudiness: response['clouds']['all'].to_f.round,
@@ -13,5 +11,3 @@ puts "#{response[:main]}"
     return @current
   end
 end
-
-#puts "The temperature is #{1.8 * (response[:main][:temp].to_i - 273) + 32} degrees Fahrenheit"
