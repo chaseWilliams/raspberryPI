@@ -1,6 +1,7 @@
 require 'rest-client'
 
 class WeatherMan
+  @current = Hash.new
   def getWeather(cityID)
     response = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774"
     @current = {
@@ -10,4 +11,5 @@ class WeatherMan
     }
     return @current
   end
+  
 end
