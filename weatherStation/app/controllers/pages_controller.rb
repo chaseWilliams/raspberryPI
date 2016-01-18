@@ -6,5 +6,6 @@ class PagesController < ApplicationController
     server = WeatherMan.new
     $outside_data = server.getWeather(4219934)
     $sensor_temp = DRead.read_data('/home/pi/Documents/coding/raspberryPI/weatherStation/app/data.txt', 'temperature')
+    $sensor_temp = ($sensor_temp.to_f * (9.0/5) + 32).round(2)
   end
 end
