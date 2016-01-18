@@ -3,9 +3,7 @@
     <h1>Testing!!</h1>
     <p>Still in progress</p>
     This is default text!
-    <% load '~/Documents/coding/raspberryPI/weatherstation.rb' %>
-    <% server = WeatherMan.new %>
-    <% @thetemp = server.getWeather(4219934)[:temp]%>
-    <h4 class = 'fun'> The weather is   <%=@thetemp%>  degrees! </h4>
+    <h4 class = 'fun'> The weather is   <%=$outside_data[:temp]%>  degrees!
+   Yet inside it's <%=$sensor_temp%> </h4>
   </div>
 </div>
