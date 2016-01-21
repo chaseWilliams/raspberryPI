@@ -6,6 +6,8 @@
 html, body {
   height: 100%;
   margin: 0;
+  margin-top: 0;
+  padding: 0;
 }
 
 body {
@@ -23,8 +25,6 @@ body {
 /* Main */
 .main {
   color: #fff;
-  position: relative;
-  top: 100px;
   text-align: center;
 }
 
@@ -33,8 +33,31 @@ body {
   font-weight: 300;
 }
 
+.main h2 {
+  margin: 0;
+}
+
 .main p {
   font-size: 30px;
+}
+
+#rectangle{
+    align: left;
+    margin: 0px;
+    padding: 0px;
+    width:75px;
+    height:700px;
+    border: 4px solid black;
+    background: linear-gradient(180deg, red, blue);
+    float: left;
+    clear: left;
+}
+
+.main div {
+  padding: 0px;
+  margin: 0px;
+  display: block;
+  white-space: nowrap;
 }
 
 .fun {
@@ -42,6 +65,8 @@ body {
   font-family: 'Inconsolata-g';
   letter-spacing: 0.05em;
   font-size: 40px;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 800px) {

@@ -1,9 +1,10 @@
 <div class="main">
   <div class="container">
-    <h1>Testing!!</h1>
-    <p>Still in progress</p>
-    This is default text!
-    <h4 class = 'fun'> The weather is   <%=$outside_data[:temp]%>  degrees! </h4>
-    <h4 class = 'fun'> Yet inside it's <%=$sensor_temp%> </h4>
+    <body>
+      <div id = 'rectangle' style="padding:0px;margin:0px">
+      </div>
+      <h4 class = 'fun'> The weather is   <%=@outside_data[:temp]%>  degrees! </h4>
+      <h4 class = 'fun'> Yet inside it's <%=@sensor_temp%> </h4>
+    </body>
   </div>
 </div>
