@@ -27,11 +27,20 @@
 
 </head>
 
-<body style='background:black;'>
+<body style='background: url(https://farm2.staticflickr.com/1515/23959664094_9c59962bb0_b.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;'>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container", style='width: 100%;
+    height: 20%;
+    vertical-align: top;
+    background-color: #15171e;
+    opacity: .8;'>
         <div class="row">
+            
             <div class="col-md-6 col-sm-12">
               <h4> The weather is   <%=@outside_data[:temp]%>  degrees! </h4>
               <h4> Yet inside it's <%=@sensor_temp%> </h4>
@@ -40,6 +49,9 @@
         <!-- /.row -->
     </div>
     <!-- /.container -->
+    <div  >
+        
+    </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
