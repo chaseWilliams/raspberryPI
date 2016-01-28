@@ -7,5 +7,6 @@ class PagesController < ApplicationController
     @outside_data = server.getWeather(4219934)
     @sensor_temp = DRead.read_data(File.expand_path('../../data.txt', __FILE__), 'temperature')
     @sensor_temp = (@sensor_temp.to_f * (9.0/5) + 32).round(2)
+    @background_img = server.getImg(@outside_data[:temp])
   end
 end
