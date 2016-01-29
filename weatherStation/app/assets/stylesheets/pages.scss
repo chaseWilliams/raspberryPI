@@ -19,6 +19,12 @@ html {
   }
 }
 
+li {
+  color: #c05525;
+  font-family: inherit;
+  font-size: inherit+2px;
+  list-style-type: none;
+}
 body {
   margin: 0;
 }
@@ -1288,7 +1294,7 @@ h3,
 h4,
 .h4 {
   font-size: 18px;
-  color: red;
+  color: #c05525;
 }
 h5,
 .h5 {
