@@ -29,12 +29,32 @@
         <div class="row">
 
             <div class="col-md-6 col-sm-12">
-              <div>
+              <div class = 'floater'>
                 <h4>Temperature: </h4>
-                  <li>Outside: <%= @outside_data[:temp]%></li>
-                  <li>Inside: <%= @sensor_temp%></li>
+                  <li>Outside: <%= @outside_data[:temp]%>&degF</li>
+                  <li>Inside: <%= @sensor_data[:temp]%>&degF</li>
               </div>
-            </div>
+              <div class = 'floater'>
+                <h4>Humidity: </h4>
+                <li> Outside: <%= @outside_data[:humidity]%>%</li>
+                <li> Inside: <%= @sensor_data[:humidity]%>%</li>
+              </div>
+              <div class = 'floater' style= 'padding-bottom: 40px'>
+                <h4 style=>Wind Speed: </h4>
+                <li style = 'font-size: 26px'> <%= @outside_data[:windiness]%> mph</li>
+              </div>
+              <div class = 'floater' style= 'margin-right: 20px;padding-bottom: 40px'>
+                <h4>Cloudiness: </h4>
+                <li style="font-size: 26px;"> <%= @outside_data[:cloudiness]%>%</li>
+              </div>
+              <div style= 'float: right;'>
+              <img src="<%="http://openweathermap.org/img/w/" + @outside_data[:condition_img] + ".png"%>" style= 'height: 125px; width: 125px;'>
+              </div>
+              <div class = 'floater' style='float: right;padding-bottom: 40px'>
+                <h4>Weather Conditions: </h4>
+                <li style="font-size: 26px;"> <%= @outside_data[:condition_description].camelize%> </li>
+              </div>
+
         </div>
         <!-- /.row -->
     </div>

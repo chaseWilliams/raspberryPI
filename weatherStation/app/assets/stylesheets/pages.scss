@@ -18,11 +18,19 @@ html {
     opacity: .6;
   }
 }
-
+.floater {
+  float: left;
+  padding: 20px;
+  padding-left: 0px;
+  margin-left: 20px;
+  margin-right: 40px;
+  border-right: 3px solid black;
+  text-align: center;
+}
 li {
   color: #c05525;
   font-family: inherit;
-  font-size: inherit+2px;
+  font-size: 20px;
   list-style-type: none;
 }
 body {
@@ -1293,7 +1301,7 @@ h3,
 }
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 28px;
   color: #c05525;
 }
 h5,
@@ -1973,7 +1981,7 @@ pre code {
     width: 58.33333333%;
   }
   .col-md-6 {
-    width: 50%;
+    width: 100%;
   }
   .col-md-5 {
     width: 41.66666667%;

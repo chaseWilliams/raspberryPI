@@ -18,4 +18,3 @@ module Flickrd
   end
   module_function :imgUrl
 end
-puts Flickrd.instance_methods
