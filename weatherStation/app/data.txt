@@ -1,2 +1,2 @@
-temperature=24.6000003815
-humidity=23.3999996185
+temperature=23.5
+humidity=27.5
