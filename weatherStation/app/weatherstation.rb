@@ -1,6 +1,5 @@
 require 'rest-client'
 require File.expand_path('../dynamic_picture_acquisition.rb', __FILE__)
-include Flickrd
 
 class WeatherMan
 
@@ -15,32 +14,35 @@ class WeatherMan
     @really_hot = [19656910812, 5951751285]
     @rain = [6845995798, 9615537120, 6133720797, 15274211811]
     @time_since_check = Time.now
-    @response = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774&units=Imperial"
+    response = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774&units=Imperial"
+    @weather_data = response
   end
   def getWeather(cityID)
-    if @time_since_check + 600 > Time.now
-      @response = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774&units=Imperial"
+    if true
+      response = JSON.parse (RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774&units=Imperial")
       @time_since_check = Time.now
-      return {
-        temp: @response['main']['temp'].to_f.round,
-        cloudiness: @response['clouds']['all'].to_f.round,
-        humidity: @response['main']['humidity'].to_f.round,
-        windiness: @response['wind']['speed'],
-        condition_id: @response['weather'][0]['id'].to_f,
-        condition_name: @response['weather'][0]['main'],
-        condition_description: @response['weather'][0]['description'],
-        condition_img: @response['weather'][0]['icon']
-
+      puts response['main']['temp'].class
+      puts response.values.class
+      weather_data = {
+        temp: response['main']['temp'].to_f.round,
+        cloudiness: response['clouds']['all'].to_f.round,
+        humidity: response['main']['humidity'].to_f.round,
+        windiness: response['wind']['speed'],
+        condition_id: response['weather'][0]['id'].to_i,
+        condition_name: response['weather'][0]['main'],
+        condition_description: response['weather'][0]['description'],
+        condition_img: response['weather'][0]['icon']
       }
+      return weather_data
     end
   end
 
   def getImg(temp) #compares with weather condition codes
-    if (@response['condition_id'] >= 200 && @response['condition_id'] < 600) #rain?
+    if (@weather_data['condition_id'] >= 200 && @weather_data['condition_id'] < 600) #rain?
       return imgUrl @rain[rand(@rain.length)-1]
-    elsif @response['condition_id'] >= 600 && @response['condition_id'] < 700 #snow?
+    elsif @weather_data['condition_id'] >= 600 && @weather_data['condition_id'] < 700 #snow?
       return imgUrl @snow[rand(@snow.length)-1]
-    elsif ([701, 721, 741].each {|k| k == @response['condition_id']}) #fog?
+    elsif ([701, 721, 741].each {|k| k == @weather_data['condition_id']}) #fog?
       return imgUrl @fog[rand(@fog.length)-1]
     elsif temp <= 10 #cold?
       return imgUrl @cold[rand(@cold.length)-1]
@@ -55,3 +57,5 @@ class WeatherMan
     end
   end
 end
+server = WeatherMan.new(4219934)
+puts server.getWeather(4219934).values.class
