@@ -15,6 +15,7 @@ class PagesController < ApplicationController
       @background_img = ISource.getImg @outside_data[:temp]
    end
   def home
-   # `sudo python /home/pi/Documents/coding/raspberryPI/weatherStation/app/led_blink.py`
+    `sudo python /home/pi/Documents/coding/raspberryPI/weatherStation/app/led_blink.py`
+    `sudo python /home/pi/Documents/coding/raspberryPI/weatherStation/app/sensor_read.py`
   end
 end
