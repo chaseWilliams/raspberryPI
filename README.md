@@ -1,12 +1,11 @@
 # raspberryPI
-A collection of neat tricks for the Raspberry PI
+One-stop shop for code that transforms the raspberryPi into a capable machine that delivers weather information.
 
-# IPdetermination.rb
-App that sends the IP address of the host machine on Slack.
+# startup.rb
+This manages what happens when the raspberry pi boots- the rc.local script under /etc/ calls this.
 
-The `hostname` and IP addresses are dynamic
+**Note** Within the app certain elements are third-party. The use of free APIs such as the Flickr and OpenWeatherMap is supported, and all rights are theirs.
 
-# led_blink.py
-App that performs a specified patterned lightshow with three LEDs
+http://openweathermap.org/terms
 
-Uses a button to initiate light sequence. Utilizes RPi.GPIO library
+https://www.flickr.com/services/api/tos/

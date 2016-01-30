@@ -11,6 +11,6 @@ pin = 4
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 if humidity is None or temperature is None:
     humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-fo = open('data.txt', 'w')
-fo.write("temperature={0}\nhumidity={1}".format(temperature, humidity))
-fo.close()
+fo = open('data.txt', 'w') #opens data file in write mode
+fo.write("temperature={0}\nhumidity={1}".format(temperature, humidity)) #writes to the file
+fo.close()#finishes up the writing process; save, and end.

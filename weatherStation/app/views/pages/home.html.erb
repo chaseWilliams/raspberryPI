@@ -13,6 +13,7 @@
     <title>Weather Station</title>
 </head>
 
+<!-- this is where the background is set, using a dynamic picture and a fixed center style.-->
 <body style='background: no-repeat center center fixed;
   background-image: url(<%=@background_img%>);
   -webkit-background-size: cover;
@@ -27,9 +28,8 @@
     background-color: #15171e;
     opacity: .8;'>
         <div class="row">
-
             <div class="col-md-6 col-sm-12">
-              <div class = 'floater'>
+              <div class = 'floater'> <!-- floater class automatically aligns the text segments -->
                 <h4>Temperature: </h4>
                   <li>Outside: <%= @outside_data[:temp]%>&degF</li>
                   <li>Inside: <%= @sensor_data[:temp]%>&degF</li>
@@ -47,7 +47,9 @@
                 <h4>Cloudiness: </h4>
                 <li style="font-size: 26px;"> <%= @outside_data[:cloudiness]%>%</li>
               </div>
+
               <div style= 'float: right;'>
+                <!-- image fetched from openweathermap.org -->
               <img src="<%="http://openweathermap.org/img/w/" + @outside_data[:condition_img] + ".png"%>" style= 'height: 125px; width: 125px;'>
               </div>
               <div class = 'floater' style='float: right;padding-bottom: 40px'>
