@@ -5,9 +5,8 @@ include Flickrd
 #this module allows for a weather data fetch, supplied via the getWeather method.
 #
 module WeatherMan
-  @weather_data = JSON.parse RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=4219934&APPID=bd43836512d5650838d83c93c4412774"
-  def getWeather(cityID)
-    response = JSON.parse (RestClient.get "http://api.openweathermap.org/data/2.5/weather?id=#{cityID}&APPID=bd43836512d5650838d83c93c4412774")
+  def self.getWeather cityID
+    response = openweathermap "id=#{cityID}"
     weather_data = {
       temp: (1.8*(response['main']['temp'].to_f-273)+32).round,
       cloudiness: response['clouds']['all'].to_f.round,
@@ -18,10 +17,30 @@ module WeatherMan
       condition_description: response['weather'][0]['description'],
       condition_img: response['weather'][0]['icon']
     }
-    @weather_data = weather_data
     return weather_data
   end
-  module_function :getWeather
+
+  def self.get_weather_zip zip_code
+    response = openweathermap "zip=#{zip_code}"
+    weather_data = {
+      temp: (1.8*(response['main']['temp'].to_f-273)+32).round,
+      cloudiness: response['clouds']['all'].to_f.round,
+      humidity: response['main']['humidity'].to_f.round,
+      windiness: response['wind']['speed'].to_f.round(1),
+      condition_id: response['weather'][0]['id'].to_i,
+      condition_name: response['weather'][0]['main'],
+      condition_description: response['weather'][0]['description'],
+      condition_img: response['weather'][0]['icon']
+    }
+    return weather_data
+  end
+
+  def self.openweathermap params
+    return JSON.parse RestClient.get 'http://api.openweathermap.org/data/2.5/weather?' + params + '&APPID=bd43836512d5650838d83c93c4412774'
+  end
+  class << self
+    private :openweathermap
+  end
 end
 
 
@@ -46,8 +65,8 @@ module ISource
       return imgUrl @rain[rand(@rain.length)-1]
     elsif WeatherMan.getWeather(4219934)[:condition_id] >= 600 && WeatherMan.getWeather(4219934)[:condition_id] < 700 #snow?
       return imgUrl @snow[rand(@snow.length)-1]
-    #elsif ([701, 721, 741].each {|k| k == WeatherMan.getWeather(4219934)[:condition_id]}) #fog?
-      #return imgUrl @fog[rand(@fog.length)-1]
+    elsif ([701, 721, 741].each {|k| k == WeatherMan.getWeather(4219934)[:condition_id]}) #fog?
+      return imgUrl @fog[rand(@fog.length)-1]
     elsif temp <= 10 #cold?
       return imgUrl @cold[rand(@cold.length)-1] #this mechanism returns a random photo id from the array.
     elsif temp <= 40 #cool?
@@ -62,3 +81,5 @@ module ISource
   end
   module_function :getImg
 end
+
+puts WeatherMan.get_weather_zip 30075

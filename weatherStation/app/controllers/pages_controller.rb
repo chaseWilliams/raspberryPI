@@ -6,9 +6,9 @@ class PagesController < ApplicationController
  before_action :establishing
  def home
    #lights up LED when http request is received
-   `echo hom0cidalmOnkeys | sudo -S python /home/pi/Documents/coding/raspberryPI/weatherStation/app/led_blink.py`
- end
   
+ end
+
   def establishing #sets up all the variables for the view
     @outside_data   = WeatherMan.getWeather 4219934
     @sensor_data    = {
